@@ -1,6 +1,7 @@
 const chromedriver = require("chromedriver");
 import { Builder, Capabilities, By, until } from "selenium-webdriver";
 
+
 describe("search", () => {
     let driver;
 
@@ -15,7 +16,7 @@ describe("search", () => {
     }, 20000);
 
     test("search title", async () => {
-        // Go to url
+        // Go to urlls
         await driver.get("https://eartheasy.com/");
 
         // Find search element
