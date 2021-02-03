@@ -19,25 +19,31 @@ describe("search", () => {
         // Go to urlls
         await driver.get("https://eartheasy.com/");
 
-        // Find account element
-        const profileIcon = await driver.findElement(By.className("customer-links customer-util-search"));
+        // Finds account element
+        const accountIcon = await driver.findElement(By.className("icon-account"));
         
-        // Click and wait on search element
-        await profileIcon.click();
+        // Clicks and wait on account element since there is a dropdown
+        await accountIcon.click();
 
-        const loginButton = await driver.findElement(By.xpath("div[class='customer-links customer-util'] a:nth-child(1)"));
+        // Find and click the LOGIN button from the dropdown
+        const loginButton = await driver.findElement(By.css("div[class='customer-links customer-util'] a:nth-child(1)"), 20000);
         await loginButton.click();
 
+        // Enters valid email from registered user
         const emailField = await driver.findElement(By.id("input-login_email"));
         await emailField.sendKeys("tester@mailinator.com");
 
+        // Enters valid password from registered user
         const passwordField = await driver.findElement(By.id("password-login_pass"));
         await passwordField.sendKeys("5tester5");
 
+        // Clicks the LOGIN button
         const logMeIn = await driver.findElement(By.xpath("//input[@value='Log In']"));
         await logMeIn.click();
 
+        // User is logged in with a default Orders page
+        // Tests if user is in the Orders page of account
         const accountHeading = await (await driver.findElement(By.className("account-heading"))).getText();
         expect(accountHeading).toEqual("Orders");
-        }, 3000);
+        }, 20000);
     });

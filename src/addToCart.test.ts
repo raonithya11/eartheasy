@@ -39,7 +39,7 @@ describe("search", () => {
         await driver.wait(until.urlIs("https://eartheasy.com/search.php?search_query=Garden+Hose"), 5000);
 
         // Find the the product "Premium Drinking Water Safe Garden Hose"
-        const firstProduct = await driver.findElement(By.xpath("//img[@alt='Premium Drinking Water Safe Garden Hose']"));
+        const firstProduct = await driver.findElement(By.xpath("//a[normalize-space()='Premium Drinking Water Safe Garden Hose']"));
         await firstProduct.click()
 
         // Selecting size option
@@ -47,19 +47,19 @@ describe("search", () => {
         await sizeType.click();
 
         // Selecting color option
-        const colorType = await driver.findElement(By.xpath("////input[@value='7371']"));
+        const colorType = await driver.findElement(By.name("attribute[3405]"));
         await colorType.click();
 
         // Adding to Cart
-        const addToCart = await driver.findElement(By.className("button button-primary button-wide add-to-cart button-progress spinner"));
+        const addToCart = await driver.findElement(By.className("button button-primary button-wide add-to-cart button-progress spinner"),20000);
         await addToCart.click();
 
-        // Finds the cart icon
-        const cartIcon = await driver.findElement(By.className("cart-mobile"));
+        //Finds the cart icon
+        const cartIcon = await driver.findElement(By.className("icon icon-cart"), 20000);
         await cartIcon.click();
 
         // Selects View Cart Button
-        const viewCart = await driver.findElement(By.xpath("//div[class='mini-cart-actions'] a[class='button']"));
+        const viewCart = await driver.findElement(By.xpath("//a[normalize-space()='View cart']"));
         await viewCart.click();
 
         // Verifieds Cart Page
@@ -71,5 +71,5 @@ describe("search", () => {
         
         // Verify product is added.
         expect(productAdded).toContain("Garden Hose");
-    });
+    }, 20000);
 });
