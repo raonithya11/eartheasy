@@ -2,7 +2,7 @@
 Repository for Eartheasy
 
 This project showcases our collaborative automation efforts to test
-someSite.
+https://eartheasy.com/.
 
 Authors:
 
