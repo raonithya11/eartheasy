@@ -13,7 +13,7 @@ describe("search", () => {
 
     afterAll(async () => {
         driver.quit();
-    }, 20000);
+    }, 30000);
 
     test("Log In", async () => {
         // Go to urlls
@@ -41,9 +41,12 @@ describe("search", () => {
         const logMeIn = await driver.findElement(By.xpath("//input[@value='Log In']"));
         await logMeIn.click();
 
+        // Pauses driver for 3 seconds
+        await driver.sleep(3000);
+
         // User is logged in with a default Orders page
         // Tests if user is in the Orders page of account
         const accountHeading = await (await driver.findElement(By.className("account-heading"))).getText();
         expect(accountHeading).toEqual("Orders");
-        }, 20000);
+        }, 30000);
     });
